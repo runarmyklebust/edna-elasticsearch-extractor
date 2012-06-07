@@ -42,6 +42,7 @@ public class TimeLogEntryFactory
 
         final String activityKey = getChildAttribute( contentDataEl, "activity", "key" );
         entry.setCustomer( customerResolver.getCustomerName( activityKey ) );
+        entry.setProject( customerResolver.getProjectName( activityKey ) );
 
         entry.setLogDate( getChildElementValueAsDate( contentDataEl, "date" ) );
         entry.setDescription( getChildElementValue( contentDataEl, "description" ) );

@@ -1,22 +1,29 @@
 package com.enonic.tools.fagdag.dataextractor;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 public class TimeLogEntry
 {
     private String key;
 
-    private String hours;
+    private Double hours;
 
     private String resource;
 
     private boolean billable;
 
-    private Date logDate;
+    private String logDate;
 
     private String description;
 
     private String customer;
+
+    private String project;
+
+    public final static SimpleDateFormat elasticsearchFullDateFormat = new SimpleDateFormat( "yyyy/MM/dd HH:mm:ss" );
+
 
     public void setCustomer( final String customer )
     {
@@ -28,10 +35,6 @@ public class TimeLogEntry
         this.description = description;
     }
 
-    public void setLogDate( final Date logDate )
-    {
-        this.logDate = logDate;
-    }
 
     public String getKey()
     {
@@ -43,10 +46,6 @@ public class TimeLogEntry
         this.key = key;
     }
 
-    public void setHours( final String hours )
-    {
-        this.hours = hours;
-    }
 
     public void setResource( final String resource )
     {
@@ -70,10 +69,19 @@ public class TimeLogEntry
         return builder.toString();
     }
 
+    public void setHours( final String hours )
+    {
+        this.hours = new Double( hours );
+    }
 
-    public String getHours()
+    public Double getHours()
     {
         return hours;
+    }
+
+    public void setHours( final Double hours )
+    {
+        this.hours = hours;
     }
 
     public String getResource()
@@ -86,9 +94,19 @@ public class TimeLogEntry
         return billable;
     }
 
-    public Date getLogDate()
+    public String getLogDate()
     {
         return logDate;
+    }
+
+    public void setLogDate( final Date logDate )
+    {
+        this.logDate = elasticsearchFullDateFormat.format( logDate );
+    }
+
+    public void setLogDate( final String logDate )
+    {
+        this.logDate = logDate;
     }
 
     public String getDescription()
@@ -99,6 +117,16 @@ public class TimeLogEntry
     public String getCustomer()
     {
         return customer;
+    }
+
+    public String getProject()
+    {
+        return project;
+    }
+
+    public void setProject( final String project )
+    {
+        this.project = project;
     }
 }
 

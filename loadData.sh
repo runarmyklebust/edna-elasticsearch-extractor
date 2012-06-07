@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Deleting old index"
+curl -XDELETE 'http://localhost:9200/test/'
+
 FILES=./timeLogDataImport_*
 
 for f in $FILES

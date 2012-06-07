@@ -14,8 +14,8 @@ public class ElasticsearchDataExtractor
 
         DataExtractorWorker dataExtractorWorker = new DataExtractorWorker( resourceResolver, customerResolver );
 
-        int batchSize = 10000;
-        int maxElements = 50000;
+        int batchSize = 100;
+        int maxElements = 500;
         int currentStart = 0;
 
         while ( currentStart < maxElements )
