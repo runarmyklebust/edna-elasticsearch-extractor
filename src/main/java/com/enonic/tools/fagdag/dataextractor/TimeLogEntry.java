@@ -3,6 +3,8 @@ package com.enonic.tools.fagdag.dataextractor;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+
 
 public class TimeLogEntry
 {
@@ -71,7 +73,7 @@ public class TimeLogEntry
 
     public void setHours( final String hours )
     {
-        this.hours = new Double( hours );
+        this.hours = new Double( StringUtils.replace( hours, ",", "." ) );
     }
 
     public Double getHours()
