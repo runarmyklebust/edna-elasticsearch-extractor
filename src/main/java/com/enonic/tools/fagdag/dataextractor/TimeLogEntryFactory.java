@@ -35,7 +35,8 @@ public class TimeLogEntryFactory
         }
 
         entry.setHours( getChildElementValue( contentDataEl, "hours" ) );
-        entry.setBillable( getChildElementValueAsBoolean( contentDataEl, "hours" ) );
+        final boolean billable = "1".equals( getChildElementValue( contentDataEl, "billable" ) );
+        entry.setBillable( billable );
 
         final String resourceKey = getChildAttribute( contentDataEl, "resource", "key" );
         entry.setResource( resourceResolver.getResourceName( resourceKey ) );
