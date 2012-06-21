@@ -1,0 +1,31 @@
+{
+    "mappings":{
+        "edna":{
+            "dynamic_templates":[
+                {
+                    "string_mapping":{
+                        "mapping":{
+                            "fields":{
+                                "_tokenized":{
+                                    "index":"analyzed",
+                                    "store":"no",
+                                    "type":"string"
+                                },
+                                "{name}":{
+                                    "index":"not_analyzed",
+                                    "store":"no",
+                                    "type":"string"
+                                }
+                            },
+                            "type":"multi_field"
+                        },
+                        "match":"*"
+                    }
+                }
+            ]
+        }
+    },
+    "settings":{
+        "number_of_shards":1
+    }
+}

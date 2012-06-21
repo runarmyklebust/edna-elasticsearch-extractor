@@ -7,8 +7,17 @@ die () {
 
 [ "$#" -eq 1 ] || die "argument 'indexName' required, eg: ./loadData.sh goRunarIndex"
 
-echo "Deleting old index"
-curl -XDELETE 'http://leela:9200/$1/'
+INDEX_NAME=$1
+INDEX_URL=http://leela:9200/$INDEX_NAME
+
+echo -e "\nDeleting old index"
+CMD="curl -XDELETE $INDEX_URL"
+echo $CMD
+$CMD
+
+echo -e "\nCreate edna index"
+CMD="curl -XPUT $INDEX_URL -d @createIndex.json"
+$CMD
 
 FILES=./timeLogDataImport_*
 
