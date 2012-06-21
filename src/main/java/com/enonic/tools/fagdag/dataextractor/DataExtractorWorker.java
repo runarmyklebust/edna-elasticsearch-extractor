@@ -2,8 +2,9 @@ package com.enonic.tools.fagdag.dataextractor;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -68,8 +69,7 @@ public class DataExtractorWorker
         BufferedWriter bufferedWriter = null;
         try
         {
-            //Construct the BufferedWriter object
-            bufferedWriter = new BufferedWriter( new FileWriter( fileName ) );
+            bufferedWriter = new BufferedWriter( new OutputStreamWriter( new FileOutputStream( fileName ), "UTF8" ) );
 
             for ( TimeLogEntry entry : timeLogEntries )
             {
