@@ -70,10 +70,11 @@ public class CustomerResolver
 
         if ( activity == null )
         {
+            System.out.println( "Activitykey not found: " + activityKey + " for customerName" );
             return "UNKNOWN";
         }
 
-        return activity.getCustomerName();
+        return StringUtils.isBlank( activity.getCustomerName() ) ? "Enonic" : activity.getCustomerName();
     }
 
     public String getProjectName( final String activityKey )
@@ -82,6 +83,8 @@ public class CustomerResolver
 
         if ( activity == null )
         {
+            System.out.println( "Activitykey not found for projectName: " + activityKey );
+
             return "UNKNOWN";
         }
 

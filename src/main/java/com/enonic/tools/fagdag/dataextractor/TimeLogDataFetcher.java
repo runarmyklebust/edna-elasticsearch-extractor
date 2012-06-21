@@ -38,7 +38,7 @@ public class TimeLogDataFetcher
         GetContentByCategoryParams params = new GetContentByCategoryParams();
         params.categoryKeys = new int[]{1482};
         params.includeData = true;
-        params.includeOfflineContent = false;
+        params.includeOfflineContent = true;
         params.includeVersionsInfo = false;
         params.count = 10000;
         params.childrenLevel = 0;
