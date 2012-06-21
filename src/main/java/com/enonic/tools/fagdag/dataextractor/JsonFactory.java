@@ -5,9 +5,9 @@ import org.json.JSONObject;
 public class JsonFactory
 {
 
-    public static String getMetaDataJson( TimeLogEntry entry )
+    public static String getMetaDataJson( String indexName, TimeLogEntry entry )
     {
-        return "{ \"index\" : { \"_index\" : \"test\", \"_type\" : \"type1\", \"_id\" : \"" + entry.getKey() + "\" } } ";
+        return "{ \"index\" : { \"_index\" : \"" + indexName + "\", \"_type\" : \"edna\", \"_id\" : \"" + entry.getKey() + "\" } } ";
     }
 
     public static String buildAsJson( TimeLogEntry entry )

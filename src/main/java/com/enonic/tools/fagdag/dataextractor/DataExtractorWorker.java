@@ -17,8 +17,11 @@ public class DataExtractorWorker
 
     private final CustomerResolver customerResolver;
 
-    public DataExtractorWorker( final ResourceResolver resourceResolver, final CustomerResolver customerResolver )
+    private final String indexName;
+
+    public DataExtractorWorker( final String indexName, final ResourceResolver resourceResolver, final CustomerResolver customerResolver )
     {
+        this.indexName = indexName;
         this.resourceResolver = resourceResolver;
         this.customerResolver = customerResolver;
     }
@@ -32,7 +35,7 @@ public class DataExtractorWorker
 
         final List<TimeLogEntry> timeLogEntries = createTimeLogEntries( contentDoc, timeLogEntryFactory );
 
-        writeAsJsonToFile( timeLogEntries, createFileName( index, count ) );
+        writeAsJsonToFile( timeLogEntries, createFileName( index, count ), indexName );
     }
 
     private String createFileName( final int index, final int count )
@@ -60,7 +63,7 @@ public class DataExtractorWorker
         return timeLogEntries;
     }
 
-    public void writeAsJsonToFile( List<TimeLogEntry> timeLogEntries, String fileName )
+    public void writeAsJsonToFile( List<TimeLogEntry> timeLogEntries, String fileName, String indexName )
     {
         BufferedWriter bufferedWriter = null;
         try
@@ -70,7 +73,7 @@ public class DataExtractorWorker
 
             for ( TimeLogEntry entry : timeLogEntries )
             {
-                bufferedWriter.write( JsonFactory.getMetaDataJson( entry ) );
+                bufferedWriter.write( JsonFactory.getMetaDataJson( indexName, entry ) );
                 bufferedWriter.newLine();
                 bufferedWriter.write( JsonFactory.buildAsJson( entry ) );
                 bufferedWriter.newLine();

@@ -11,13 +11,23 @@ public class ElasticsearchDataExtractor
     public static void main( String[] args )
     {
 
-        final Integer batchSize = args[0] != null ? new Integer( args[0] ) : DEFAULT_BATCH_SIZE;
-        final Integer maxNumber = args[1] != null ? new Integer( args[1] ) : DEFAULT_MAX_NUMBER;
+        if ( args[0] == null )
+        {
+            System.out.println( "Index name required" );
+            System.exit( 1 );
+        }
+
+        final String indexName = args[0];
+
+        System.out.println( "Generating insert data for index: " + indexName );
+
+        final Integer batchSize = args[1] != null ? new Integer( args[1] ) : DEFAULT_BATCH_SIZE;
+        final Integer maxNumber = args[2] != null ? new Integer( args[2] ) : DEFAULT_MAX_NUMBER;
 
         ResourceResolver resourceResolver = new ResourceResolver();
         CustomerResolver customerResolver = new CustomerResolver();
 
-        DataExtractorWorker dataExtractorWorker = new DataExtractorWorker( resourceResolver, customerResolver );
+        DataExtractorWorker dataExtractorWorker = new DataExtractorWorker( indexName, resourceResolver, customerResolver );
 
         int currentStart = 0;
 
