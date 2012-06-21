@@ -33,7 +33,7 @@ public class ElasticsearchDataExtractor
 
         while ( currentStart < maxNumber )
         {
-            System.out.println( "Processing from " + currentStart + " to " + ( batchSize - 1 ) + "......" );
+            System.out.println( "Processing from " + currentStart + " to " + ( currentStart + batchSize - 1 ) + "......" );
 
             dataExtractorWorker.extractData( currentStart, batchSize );
             currentStart = currentStart + batchSize;
