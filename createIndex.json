@@ -19,10 +19,35 @@
                             },
                             "type":"multi_field"
                         },
-                        "match":"*"
+                        "match":"*",
+                        "unmatch": "*Date"
+                    }
+                },
+                {
+                    "date_mapping":{
+                        "mapping":{
+                            "fields":{
+                                "{name}":{
+                                    "index":"not_analyzed",
+                                    "store":"no",
+                                    "type":"date",
+                                    "format": "yyyy/MM/dd HH:mm:ss||yyyy/MM/dd"
+                                }
+                            },
+                            "type":"multi_field"
+                        },
+                        "match":"*Date"
                     }
                 }
-            ]
+            ],
+            "properties": {
+                "billable": {
+                    "type": "boolean"
+                },
+                "hours": {
+                    "type": "double"
+                }
+            }
         }
     },
     "settings":{
